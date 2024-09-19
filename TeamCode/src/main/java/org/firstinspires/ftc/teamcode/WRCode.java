@@ -8,7 +8,7 @@ import org.firstinspires.ftc.teamcode.subsystems.Arm;
 import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
 import org.firstinspires.ftc.teamcode.subsystems.Intake;
 
-@TeleOp(name = "WRCode2")
+@TeleOp(name = "WRCode")
 public class WRCode extends LinearOpMode {
 
     private Drivetrain drivetrain;
