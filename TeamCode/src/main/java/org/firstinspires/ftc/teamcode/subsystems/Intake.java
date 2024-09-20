@@ -1,9 +1,10 @@
 package org.firstinspires.ftc.teamcode.subsystems;
 
+import static org.firstinspires.ftc.robotcore.external.BlocksOpModeCompanion.gamepad1;
+
 import com.qualcomm.hardware.rev.RevTouchSensor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
-import com.qualcomm.robotcore.hardware.DigitalChannel;
 
 public class Intake {
     private Servo armServo;
@@ -25,17 +26,18 @@ public class Intake {
     }
 
     public void tiltArmUp() {
-        armServoPosition = Math.min(armServoPosition + 0.001, 1);
+        armServoPosition = Math.min(armServoPosition + 0.001, 1.1);
         armServo.setPosition(armServoPosition);
     }
 
-    public void tiltArmDown() {
+    public boolean tiltArmDown() {
         // Prevent moving down if the limit switch is pressed
         if (armLimitSwitch.isPressed()) {
-            return;
+            return false;
         }
         armServoPosition = Math.max(armServoPosition - 0.001, 0);
         armServo.setPosition(armServoPosition);
+        return true;
     }
 
     public void openIntake() {

@@ -2,14 +2,13 @@ package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-import com.qualcomm.robotcore.hardware.*;
 
 import org.firstinspires.ftc.teamcode.subsystems.Arm;
 import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
 import org.firstinspires.ftc.teamcode.subsystems.Intake;
 
 @TeleOp(name = "WRCode")
-public class WRCode extends LinearOpMode {
+public class WROP extends LinearOpMode {
 
     private Drivetrain drivetrain;
     private Arm arm;
@@ -27,6 +26,7 @@ public class WRCode extends LinearOpMode {
 
         // Main loop
         while (opModeIsActive()) {
+            gamepad1.rumble(500);
             // Drivetrain control
             double speed = -gamepad1.left_stick_y;
             double turn = -gamepad1.right_stick_x * 0.8;
@@ -52,10 +52,12 @@ public class WRCode extends LinearOpMode {
             if (gamepad1.x) {
                 intake.tiltArmUp();
             } else if (gamepad1.b) {
-                intake.tiltArmDown();
+                if(!intake.tiltArmDown()){
+                    telemetry.addData("Limit Switch Status: ", "Pressed");
+                }else{
+                    telemetry.addData("Limit Switch Status: ", "Not Pressed");
+                }
             }
-
-            // Update telemetry if needed
             telemetry.update();
         }
     }

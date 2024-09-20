@@ -6,7 +6,7 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 public class Arm {
     private DcMotor armMotorRight;
     private DcMotor armMotorLeft;
-    private static final double ARM_SPEED = 1;
+    private static final double ARM_SPEED = 0.5;
 
     public Arm(HardwareMap hardwareMap) {
         armMotorRight = hardwareMap.get(DcMotor.class, "ArmMotorRight");
