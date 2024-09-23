@@ -41,12 +41,12 @@ public class Intake {
     }
 
     public void openIntake() {
-        intakeServoPosition = Math.min(intakeServoPosition, 1);
+        intakeServoPosition = Math.min(intakeServoPosition + 0.005, 1);
         intakeServo.setPosition(intakeServoPosition);
     }
 
     public void closeIntake() {
-        intakeServoPosition = Math.max(intakeServoPosition - 0.0001, 0);
+        intakeServoPosition = Math.max(intakeServoPosition - 0.005, 0);
         intakeServo.setPosition(intakeServoPosition);
     }
 }
