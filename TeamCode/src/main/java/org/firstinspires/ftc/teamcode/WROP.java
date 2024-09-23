@@ -26,7 +26,6 @@ public class WROP extends LinearOpMode {
 
         // Main loop
         while (opModeIsActive()) {
-            gamepad1.rumble(500);
             // Drivetrain control
             double speed = -gamepad1.left_stick_y;
             double turn = -gamepad1.right_stick_x * 0.8;
@@ -51,6 +50,7 @@ public class WROP extends LinearOpMode {
             // Arm servo control
             if (gamepad1.x) {
                 intake.tiltArmUp();
+                telemetry.addData("Limit Switch Status: ", "Not Pressed");
             } else if (gamepad1.b) {
                 if(!intake.tiltArmDown()){
                     telemetry.addData("Limit Switch Status: ", "Pressed");
