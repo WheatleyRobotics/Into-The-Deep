@@ -13,9 +13,9 @@ public class Drivetrain {
     private DcMotor BottomLeftDrive;
 
     public Drivetrain(HardwareMap hardwareMap) {
-        TopRightDrive = hardwareMap.get(DcMotor.class, "RightFront");
+        //TopRightDrive = hardwareMap.get(DcMotor.class, "RightFront");
         BottomRightDrive = hardwareMap.get(DcMotor.class, "RightBack");
-        TopLeftDrive = hardwareMap.get(DcMotor.class, "LeftFront");
+        //TopLeftDrive = hardwareMap.get(DcMotor.class, "LeftFront");
         BottomLeftDrive = hardwareMap.get(DcMotor.class, "LeftBack");
 
         //TopRightDrive.setDirection(DcMotorSimple.Direction.REVERSE);
@@ -31,9 +31,9 @@ public class Drivetrain {
         RightLeft = Horizontal;
         Rotation = Pivot;
 
-        TopRightDrive.setPower(-Rotation + (ForwardBack + RightLeft));
+        //TopRightDrive.setPower(-Rotation + (ForwardBack + RightLeft));
         BottomRightDrive.setPower(-Rotation + (ForwardBack - RightLeft));
-        TopLeftDrive.setPower(-Rotation + (-ForwardBack + RightLeft));
+        //TopLeftDrive.setPower(-Rotation + (-ForwardBack + RightLeft));
         BottomLeftDrive.setPower(-Rotation + (-ForwardBack - RightLeft));
 
         /*
