@@ -36,10 +36,10 @@ public class WROP extends LinearOpMode {
             drivetrain.drive(Vertical, Horizontal, Pivot);
 
             //Intake control
-            if(gamepad1.dpad_right){
+            if(gamepad2.x){
                 intake.IntakeIn();
             }
-            else if(gamepad1.dpad_left){
+            else if(gamepad2.b){
                 intake.IntakeOut();
             }
             else{
@@ -47,25 +47,25 @@ public class WROP extends LinearOpMode {
             }
 
             //Arm Control
-            if(gamepad1.y){
+            if(gamepad2.dpad_up){
                 arm.MoveUp();
             }
-            else if(gamepad1.dpad_down){
+            else if(gamepad2.dpad_down){
                 arm.MoveDown();
             }
             else{
-                arm.Stop();
+                arm.ArmStop();
             }
 
             //Arm Tape Control
-            if(gamepad1.y){
+            if(gamepad2.y){
                 armTape.MoveUp();
             }
-            else if(gamepad1.a){
+            else if(gamepad2.a){
                 armTape.MoveDown();
             }
             else{
-                armTape.Stop();
+                armTape.ArmTapeStop();
             }
 
             /*

@@ -11,7 +11,7 @@ public class Arm {
     public Arm(HardwareMap hardwareMap){
         ArmMotor = hardwareMap.get(DcMotor.class, "ArmMotor");
 
-        ArmMotor.setDirection(DcMotor.Direction.REVERSE);
+        //ArmMotor.setDirection(DcMotor.Direction.REVERSE);
     }
 
     public void MoveUp(){
@@ -19,10 +19,10 @@ public class Arm {
     }
 
     public void MoveDown(){
-        ArmMotor.setPower(ArmSpeed);
+        ArmMotor.setPower(-ArmSpeed);
     }
 
-    public void Stop(){
+    public void ArmStop(){
         ArmMotor.setPower(0);
     }
 }
