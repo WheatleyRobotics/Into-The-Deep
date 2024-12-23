@@ -30,16 +30,17 @@ public class WROP extends LinearOpMode {
         // Main loop
         while (opModeIsActive()) {
             // Drivetrain control
-            double Vertical = gamepad1.left_stick_y;
-            double Horizontal = gamepad1.left_stick_x;
+
+            double Vertical = -gamepad1.left_stick_y;
+            double Horizontal = -gamepad1.left_stick_x;
             double Pivot = gamepad1.right_stick_x;
             drivetrain.drive(Vertical, Horizontal, Pivot);
 
             //Intake control
-            if(gamepad2.x){
+            if(gamepad2.right_bumper){
                 intake.IntakeIn();
             }
-            else if(gamepad2.b){
+            else if(gamepad2.left_bumper){
                 intake.IntakeOut();
             }
             else{
@@ -47,7 +48,7 @@ public class WROP extends LinearOpMode {
             }
 
             //Arm Control
-            if(gamepad2.dpad_up){
+           if(gamepad2.dpad_up){
                 arm.MoveUp();
             }
             else if(gamepad2.dpad_down){
@@ -68,35 +69,35 @@ public class WROP extends LinearOpMode {
                 armTape.ArmTapeStop();
             }
 
-            /*
-            // Arm control
-            if (gamepad1.y) {
-                arm.moveUp();
-            } else if (gamepad1.a) {
-                arm.moveDown();
-            } else {
-                arm.stop();
-            }
-
-            // Intake control
-            if (gamepad1.right_bumper) {
-                intake.openIntake();
-            } else if (gamepad1.left_bumper) {
-                intake.closeIntake();
-            }
-
-            // Arm servo control
-            if (gamepad1.x) {
-                intake.tiltArmUp();
-                telemetry.addData("Limit Switch Status: ", "Not Pressed");
-            } else if (gamepad1.b) {
-                if(!intake.tiltArmDown()){
-                    telemetry.addData("Limit Switch Status: ", "Pressed");
-                }else{
-                    telemetry.addData("Limit Switch Status: ", "Not Pressed");
-                }
-            }
-             */
+//            /*
+//            // Arm control
+//            if (gamepad1.y) {
+//                arm.moveUp();
+//            } else if (gamepad1.a) {
+//                arm.moveDown();
+//            } else {
+//                arm.stop();
+//            }
+//
+//            // Intake control
+//            if (gamepad1.right_bumper) {
+//                intake.openIntake();
+//            } else if (gamepad1.left_bumper) {
+//                intake.closeIntake();
+//            }
+//
+//            // Arm servo control
+//            if (gamepad1.x) {
+//                intake.tiltArmUp();
+//                telemetry.addData("Limit Switch Status: ", "Not Pressed");
+//            } else if (gamepad1.b) {
+//                if(!intake.tiltArmDown()){
+//                    telemetry.addData("Limit Switch Status: ", "Pressed");
+//                }else{
+//                    telemetry.addData("Limit Switch Status: ", "Not Pressed");
+//                }
+//            }
+//             */
 
             telemetry.update();
         }

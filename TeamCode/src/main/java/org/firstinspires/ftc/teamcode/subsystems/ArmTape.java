@@ -10,7 +10,7 @@ public class ArmTape {
     public ArmTape(HardwareMap hardwareMap){
         ArmTapeMotor = hardwareMap.get(DcMotor.class, "ArmTapeMotor");
 
-        //ArmTapeMotor.setDirection(DcMotor.Direction.REVERSE);
+        ArmTapeMotor.setDirection(DcMotor.Direction.REVERSE);
     }
 
     public void MoveUp(){
@@ -19,6 +19,10 @@ public class ArmTape {
 
     public void MoveDown(){
         ArmTapeMotor.setPower(-ArmTapeMotorSpeed);
+    }
+
+    public void AutoMoveUp(){
+        ArmTapeMotor.setPower(0.3);
     }
 
     public void ArmTapeStop(){

@@ -1,6 +1,8 @@
 package org.firstinspires.ftc.teamcode.subsystems;
 
 
+import static org.firstinspires.ftc.robotcore.external.BlocksOpModeCompanion.telemetry;
+
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
@@ -11,8 +13,8 @@ public class Arm {
 
     public Arm(HardwareMap hardwareMap){
         ArmMotor = hardwareMap.get(DcMotor.class, "ArmMotor");
-        
-        //ArmMotor.setDirection(DcMotor.Direction.REVERSE);
+
+        ArmMotor.setDirection(DcMotor.Direction.REVERSE);
     }
 
     public void MoveUp(){
@@ -23,9 +25,9 @@ public class Arm {
         ArmMotor.setPower(ArmSpeedDown);
     }
 
-    public void ArmStop(){
+   public void ArmStop(){
         ArmMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         ArmMotor.setPower(0);
-        //ArmMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
+        ArmMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
     }
 }

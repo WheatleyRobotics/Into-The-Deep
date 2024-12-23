@@ -8,7 +8,7 @@ import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
 import org.firstinspires.ftc.teamcode.subsystems.Intake;
 import org.firstinspires.ftc.teamcode.subsystems.ArmTape;
 
-@Autonomous(name = "WRAuto")
+@Autonomous(name = "Liam Blackmail Auto")
 public class WRAuto extends LinearOpMode {
     private Drivetrain drivetrain;
     private Intake intake;
@@ -26,6 +26,20 @@ public class WRAuto extends LinearOpMode {
 
         // Wait for the game to start
         waitForStart();
+
+        drivetrain.drive(1,0,0);
+        Thread.sleep(360);
+        drivetrain.drive(0,0,0);
+        Thread.sleep(10);
+        arm.MoveUp();
+        Thread.sleep(700);
+        arm.ArmStop();
+        Thread.sleep(10);
+        armTape.MoveUp();
+        Thread.sleep(1200);
+        armTape.AutoMoveUp();
+        Thread.sleep(300);
+        armTape.ArmTapeStop();
 
         /*
         drivetrain.drive(0.1, 0);
