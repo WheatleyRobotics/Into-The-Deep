@@ -82,7 +82,7 @@ public class WROP extends LinearOpMode {
                 sleep(2000);
                 intake.StopIntake();
                 sleep(50);
-                //Auto go back to normal
+                //Arm go back to normal
                 armTape.MoveDown();
                 sleep(1250);
                 armTape.AutoMoveDown();
