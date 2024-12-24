@@ -25,6 +25,15 @@ public class Arm {
         ArmMotor.setPower(ArmSpeedDown);
     }
 
+    public void AutoMoveDown(){
+        ArmMotor.setPower(-1);
+    }
+
+    public void AutoArmStop(){
+        ArmMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        ArmMotor.setPower(0);
+    }
+
    public void ArmStop(){
         ArmMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         ArmMotor.setPower(0);

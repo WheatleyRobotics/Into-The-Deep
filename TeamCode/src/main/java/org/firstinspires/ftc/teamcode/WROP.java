@@ -30,7 +30,6 @@ public class WROP extends LinearOpMode {
         // Main loop
         while (opModeIsActive()) {
             // Drivetrain control
-
             double Vertical = -gamepad1.left_stick_y;
             double Horizontal = -gamepad1.left_stick_x;
             double Pivot = gamepad1.right_stick_x;
@@ -67,6 +66,33 @@ public class WROP extends LinearOpMode {
             }
             else{
                 armTape.ArmTapeStop();
+            }
+
+            if(gamepad2.x){
+                arm.MoveUp();
+                sleep(700);
+                arm.ArmStop();
+                sleep(10);
+                armTape.MoveUp();
+                sleep(1250);
+                armTape.AutoMoveUp();
+                sleep(370);
+                armTape.AutoArmTapeStop();
+                intake.IntakeOut();
+                sleep(2000);
+                intake.StopIntake();
+                sleep(50);
+                //Auto go back to normal
+                armTape.MoveDown();
+                sleep(1250);
+                armTape.AutoMoveDown();
+                sleep(360);
+                armTape.ArmTapeStop();
+                sleep(10);
+                arm.AutoMoveDown();
+                sleep(500);
+                arm.AutoArmStop();
+                sleep(2000);
             }
 
 //            /*

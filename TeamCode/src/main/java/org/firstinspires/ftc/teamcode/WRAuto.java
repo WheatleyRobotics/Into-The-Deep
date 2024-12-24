@@ -1,5 +1,7 @@
 package org.firstinspires.ftc.teamcode;
 
+import android.content.res.Resources;
+
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
@@ -27,19 +29,37 @@ public class WRAuto extends LinearOpMode {
         // Wait for the game to start
         waitForStart();
 
-        drivetrain.drive(1,0,0);
-        Thread.sleep(360);
-        drivetrain.drive(0,0,0);
-        Thread.sleep(10);
+//        drivetrain.drive(1,0,0);
+//        Thread.sleep(360);
+//        drivetrain.drive(0,0,0);
+//        Thread.sleep(10);
         arm.MoveUp();
         Thread.sleep(700);
         arm.ArmStop();
         Thread.sleep(10);
         armTape.MoveUp();
-        Thread.sleep(1200);
+        Thread.sleep(1250);
         armTape.AutoMoveUp();
-        Thread.sleep(300);
+        Thread.sleep(370);
+        armTape.AutoArmTapeStop();
+        intake.IntakeOut();
+        Thread.sleep(2000);
+        intake.StopIntake();
+        Thread.sleep(50);
+        //Auto go back to normal
+        armTape.MoveDown();
+        Thread.sleep(1250);
+        armTape.AutoMoveDown();
+        Thread.sleep(360);
         armTape.ArmTapeStop();
+        Thread.sleep(10);
+        arm.AutoMoveDown();
+        Thread.sleep(500);
+        arm.AutoArmStop();
+        Thread.sleep(2000);
+
+
+        //intake.StopIntake();
 
         /*
         drivetrain.drive(0.1, 0);
