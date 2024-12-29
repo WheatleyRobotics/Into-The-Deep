@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode;
+package org.firstinspires.ftc.teamcode.Tele;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
@@ -8,13 +8,39 @@ import org.firstinspires.ftc.teamcode.subsystems.Intake;
 import org.firstinspires.ftc.teamcode.subsystems.Arm;
 import org.firstinspires.ftc.teamcode.subsystems.ArmTape;
 
-@TeleOp(name = "WRCode")
-public class WROP extends LinearOpMode {
-
+@TeleOp(name = "WRPresets")
+public class WRPresets extends LinearOpMode {
     private Drivetrain drivetrain;
     private Intake intake;
     private Arm arm;
     private ArmTape armTape;
+
+    public void preset(){
+        arm.MoveUp();
+        sleep(700);
+        arm.ArmStop();
+        sleep(10);
+        armTape.ArmMoveUp();
+        sleep(500);
+        armTape.AutoMoveUp();
+        sleep(370);
+        armTape.AutoArmTapeStop();
+        intake.IntakeOut();
+        sleep(2000);
+        intake.StopIntake();
+        sleep(50);
+        //Auto go back to normal
+        armTape.ArmMoveDown();
+        sleep(300);
+        armTape.AutoMoveDown();
+        sleep(360);
+        armTape.ArmTapeStop();
+        sleep(10);
+        arm.AutoMoveDown();
+        sleep(500);
+        arm.AutoArmStop();
+        sleep(2000);
+    }
 
     @Override
     public void runOpMode() {
@@ -69,12 +95,17 @@ public class WROP extends LinearOpMode {
             }
 
             if(gamepad2.x){
+                preset();
+            }
+
+            /*
+            if(gamepad2.x){
                 arm.MoveUp();
                 sleep(700);
                 arm.ArmStop();
                 sleep(10);
-                armTape.MoveUp();
-                sleep(1250);
+                armTape.ArmMoveUp();
+                sleep(500);
                 armTape.AutoMoveUp();
                 sleep(370);
                 armTape.AutoArmTapeStop();
@@ -82,9 +113,9 @@ public class WROP extends LinearOpMode {
                 sleep(2000);
                 intake.StopIntake();
                 sleep(50);
-                //Arm go back to normal
-                armTape.MoveDown();
-                sleep(1250);
+                //Auto go back to normal
+                armTape.ArmMoveDown();
+                sleep(300);
                 armTape.AutoMoveDown();
                 sleep(360);
                 armTape.ArmTapeStop();
@@ -94,6 +125,8 @@ public class WROP extends LinearOpMode {
                 arm.AutoArmStop();
                 sleep(2000);
             }
+            */
+
 
 //            /*
 //            // Arm control

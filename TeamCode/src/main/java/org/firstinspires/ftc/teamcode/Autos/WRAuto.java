@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode;
+package org.firstinspires.ftc.teamcode.Autos;
 
 import android.content.res.Resources;
 
@@ -37,8 +37,8 @@ public class WRAuto extends LinearOpMode {
         Thread.sleep(700);
         arm.ArmStop();
         Thread.sleep(10);
-        armTape.MoveUp();
-        Thread.sleep(1250);
+        armTape.ArmMoveUp();
+        Thread.sleep(500);
         armTape.AutoMoveUp();
         Thread.sleep(370);
         armTape.AutoArmTapeStop();
@@ -47,8 +47,8 @@ public class WRAuto extends LinearOpMode {
         intake.StopIntake();
         Thread.sleep(50);
         //Auto go back to normal
-        armTape.MoveDown();
-        Thread.sleep(1250);
+        armTape.ArmMoveDown();
+        Thread.sleep(300);
         armTape.AutoMoveDown();
         Thread.sleep(360);
         armTape.ArmTapeStop();

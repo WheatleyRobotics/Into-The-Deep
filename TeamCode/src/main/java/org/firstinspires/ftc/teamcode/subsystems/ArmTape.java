@@ -6,6 +6,7 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 public class ArmTape {
     private DcMotor ArmTapeMotor;
     private static final double ArmTapeMotorSpeed = 0.5;
+    private static final double AutoArmTapeSpeed = 0.8;
     private static final double ArmTapeAutoSpeed = 0.3;
 
     public ArmTape(HardwareMap hardwareMap){
@@ -28,6 +29,14 @@ public class ArmTape {
 
     public void AutoMoveDown(){
         ArmTapeMotor.setPower(-ArmTapeAutoSpeed);
+    }
+
+    public void ArmMoveUp(){
+        ArmTapeMotor.setPower(AutoArmTapeSpeed);
+    }
+
+    public void ArmMoveDown(){
+        ArmTapeMotor.setPower(-AutoArmTapeSpeed);
     }
 
     public void AutoArmTapeStop(){
