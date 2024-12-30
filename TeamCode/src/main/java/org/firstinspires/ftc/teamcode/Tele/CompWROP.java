@@ -1,5 +1,7 @@
 package org.firstinspires.ftc.teamcode.Tele;
 
+import static org.firstinspires.ftc.robotcore.external.BlocksOpModeCompanion.telemetry;
+
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
@@ -33,6 +35,8 @@ public class CompWROP extends LinearOpMode {
             double Horizontal = -gamepad1.left_stick_x;
             double Pivot = gamepad1.right_stick_x;
             drivetrain.drive(Vertical, Horizontal, Pivot);
+
+            telemetry.addData("Arm Motor Pos:", arm.ArmValue());
 
             //Intake control
             if(gamepad2.right_bumper){
