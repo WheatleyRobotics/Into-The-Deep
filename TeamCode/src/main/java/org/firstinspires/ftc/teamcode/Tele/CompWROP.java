@@ -1,14 +1,18 @@
 package org.firstinspires.ftc.teamcode.Tele;
 
-import static org.firstinspires.ftc.robotcore.external.BlocksOpModeCompanion.telemetry;
-
+import com.qualcomm.hardware.rev.RevHubOrientationOnRobot;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.hardware.IMU;
+import com.qualcomm.robotcore.util.ElapsedTime;
 
-import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
-import org.firstinspires.ftc.teamcode.subsystems.Intake;
+import java.lang.Math;
+import java.text.DecimalFormat;
+
 import org.firstinspires.ftc.teamcode.subsystems.Arm;
 import org.firstinspires.ftc.teamcode.subsystems.ArmTape;
+import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
+import org.firstinspires.ftc.teamcode.subsystems.Intake;
 
 @TeleOp(name = "WRCode")
 public class CompWROP extends LinearOpMode {
@@ -16,6 +20,9 @@ public class CompWROP extends LinearOpMode {
     private Intake intake;
     private Arm arm;
     private ArmTape armTape;
+    private IMU imu = null;
+
+    private ElapsedTime runtime = new ElapsedTime();
 
     @Override
     public void runOpMode() {
@@ -24,20 +31,30 @@ public class CompWROP extends LinearOpMode {
         intake = new Intake(hardwareMap);
         arm = new Arm(hardwareMap);
         armTape = new ArmTape(hardwareMap);
+        imu = hardwareMap.get(IMU.class,"imu");
+        IMU.Parameters parameters = new IMU.Parameters(new RevHubOrientationOnRobot(
+                RevHubOrientationOnRobot.LogoFacingDirection.UP,
+                RevHubOrientationOnRobot.UsbFacingDirection.FORWARD));
+
+        imu.initialize(parameters);
 
         // Wait for the game to start
         waitForStart();
 
         // Main loop
         while (opModeIsActive()) {
+            // Driver controls
             // Drivetrain control
             double Vertical = -gamepad1.left_stick_y;
             double Horizontal = -gamepad1.left_stick_x;
             double Pivot = gamepad1.right_stick_x;
             drivetrain.drive(Vertical, Horizontal, Pivot);
 
-            telemetry.addData("Arm Motor Pos:", arm.ArmValue());
+            if(gamepad1.a){
+                
+            }
 
+            //Operator Controls
             //Intake control
             if(gamepad2.right_bumper){
                 intake.IntakeIn();
@@ -71,66 +88,18 @@ public class CompWROP extends LinearOpMode {
                 armTape.ArmTapeStop();
             }
 
-            /*
+            //Arm preset
             if(gamepad2.x){
-                arm.MoveUp();
-                sleep(700);
-                arm.ArmStop();
-                sleep(10);
-                armTape.ArmMoveUp();
-                sleep(500);
-                armTape.AutoMoveUp();
-                sleep(370);
-                armTape.AutoArmTapeStop();
-                intake.IntakeOut();
-                sleep(2000);
-                intake.StopIntake();
-                sleep(50);
-                //Auto go back to normal
-                armTape.ArmMoveDown();
-                sleep(300);
-                armTape.AutoMoveDown();
-                sleep(360);
-                armTape.ArmTapeStop();
-                sleep(10);
-                arm.AutoMoveDown();
-                sleep(500);
-                arm.AutoArmStop();
-                sleep(2000);
+                if(arm.ArmValue() < 2000){
+                    arm.MoveUp();
+                }
             }
-            */
 
-
-//            /*
-//            // Arm control
-//            if (gamepad1.y) {
-//                arm.moveUp();
-//            } else if (gamepad1.a) {
-//                arm.moveDown();
-//            } else {
-//                arm.stop();
-//            }
-//
-//            // Intake control
-//            if (gamepad1.right_bumper) {
-//                intake.openIntake();
-//            } else if (gamepad1.left_bumper) {
-//                intake.closeIntake();
-//            }
-//
-//            // Arm servo control
-//            if (gamepad1.x) {
-//                intake.tiltArmUp();
-//                telemetry.addData("Limit Switch Status: ", "Not Pressed");
-//            } else if (gamepad1.b) {
-//                if(!intake.tiltArmDown()){
-//                    telemetry.addData("Limit Switch Status: ", "Pressed");
-//                }else{
-//                    telemetry.addData("Limit Switch Status: ", "Not Pressed");
-//                }
-//            }
-//             */
-
+            //Telemetry Data
+            telemetry.addData("Status", "Enabled");
+            telemetry.addData("Arm Motor Pos:", arm.ArmValue());
+            telemetry.addData("Run Time:", runtime);
+            telemetry.addData("Gyro:", imu.getRobotYawPitchRollAngles());
             telemetry.update();
         }
     }

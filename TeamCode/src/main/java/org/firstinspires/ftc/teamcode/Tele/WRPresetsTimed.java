@@ -8,8 +8,8 @@ import org.firstinspires.ftc.teamcode.subsystems.Intake;
 import org.firstinspires.ftc.teamcode.subsystems.Arm;
 import org.firstinspires.ftc.teamcode.subsystems.ArmTape;
 
-@TeleOp(name = "WRPresets")
-public class WRPresets extends LinearOpMode {
+@TeleOp(name = "WRPresetsTimed")
+public class WRPresetsTimed extends LinearOpMode {
     private Drivetrain drivetrain;
     private Intake intake;
     private Arm arm;
