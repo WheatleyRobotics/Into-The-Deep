@@ -11,12 +11,13 @@ import org.firstinspires.ftc.teamcode.subsystems.ArmTape;
 import org.firstinspires.ftc.teamcode.subsystems.FeildCentricDrivetrain;
 import org.firstinspires.ftc.teamcode.subsystems.Intake;
 
-@TeleOp(name = "WRCode")
-public class CompWROP extends LinearOpMode {
+@TeleOp(name = "FeildCentric")
+public class FeildCentricWROP extends LinearOpMode {
     private FeildCentricDrivetrain drivetrain;
     private Intake intake;
     private Arm arm;
     private ArmTape armTape;
+    private IMU imu = null;
 
     private ElapsedTime runtime = new ElapsedTime();
 

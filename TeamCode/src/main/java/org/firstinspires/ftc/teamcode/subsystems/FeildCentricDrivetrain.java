@@ -10,7 +10,7 @@ import com.qualcomm.robotcore.hardware.IMU;
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 import org.firstinspires.ftc.robotcore.external.navigation.YawPitchRollAngles;
 
-public class Drivetrain {
+public class FeildCentricDrivetrain {
     private DcMotor TopRightDrive;
     private DcMotor BottomRightDrive;
     private DcMotor TopLeftDrive;
@@ -22,7 +22,7 @@ public class Drivetrain {
     private double TopLeftDrivePower;
     private double BottomLeftDrivePower;
 
-    public Drivetrain(HardwareMap hardwareMap) {
+    public FeildCentricDrivetrain(HardwareMap hardwareMap) {
         TopRightDrive = hardwareMap.get(DcMotor.class, "RightFront");
         BottomRightDrive = hardwareMap.get(DcMotor.class, "RightBack");
         TopLeftDrive = hardwareMap.get(DcMotor.class, "LeftFront");
