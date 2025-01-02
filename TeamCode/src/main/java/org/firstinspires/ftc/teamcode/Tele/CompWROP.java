@@ -3,17 +3,16 @@ package org.firstinspires.ftc.teamcode.Tele;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-import com.qualcomm.robotcore.hardware.IMU;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.teamcode.subsystems.Arm;
 import org.firstinspires.ftc.teamcode.subsystems.ArmTape;
-import org.firstinspires.ftc.teamcode.subsystems.FeildCentricDrivetrain;
+import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
 import org.firstinspires.ftc.teamcode.subsystems.Intake;
 
 @TeleOp(name = "WRCode")
 public class CompWROP extends LinearOpMode {
-    private FeildCentricDrivetrain drivetrain;
+    private Drivetrain drivetrain;
     private Intake intake;
     private Arm arm;
     private ArmTape armTape;
@@ -23,7 +22,7 @@ public class CompWROP extends LinearOpMode {
     @Override
     public void runOpMode() {
         // Initialize subsystems
-        drivetrain = new FeildCentricDrivetrain(hardwareMap);
+        drivetrain = new Drivetrain(hardwareMap);
         intake = new Intake(hardwareMap);
         arm = new Arm(hardwareMap);
         armTape = new ArmTape(hardwareMap);
