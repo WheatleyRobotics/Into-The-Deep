@@ -5,7 +5,7 @@ import android.content.res.Resources;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
-import org.firstinspires.ftc.teamcode.subsystems.Arm;
+import org.firstinspires.ftc.teamcode.subsystems.ArmNormal;
 import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
 import org.firstinspires.ftc.teamcode.subsystems.Intake;
 import org.firstinspires.ftc.teamcode.subsystems.ArmTape;
@@ -14,7 +14,7 @@ import org.firstinspires.ftc.teamcode.subsystems.ArmTape;
 public class WRAuto extends LinearOpMode {
     private Drivetrain drivetrain;
     private Intake intake;
-    private Arm arm;
+    private ArmNormal arm;
     private ArmTape armTape;
 
     @Override
@@ -22,7 +22,7 @@ public class WRAuto extends LinearOpMode {
         // Initialize subsystems
         drivetrain = new Drivetrain(hardwareMap);
         intake = new Intake(hardwareMap);
-        arm = new Arm(hardwareMap);
+        arm = new ArmNormal(hardwareMap);
         armTape = new ArmTape(hardwareMap);
 
 

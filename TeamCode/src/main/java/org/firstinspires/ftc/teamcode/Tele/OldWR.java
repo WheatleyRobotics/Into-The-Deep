@@ -1,19 +1,21 @@
 package org.firstinspires.ftc.teamcode.Tele;
 
+
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.hardware.IMU;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
-import org.firstinspires.ftc.teamcode.subsystems.Arm;
+import org.firstinspires.ftc.teamcode.subsystems.ArmNormal;
 import org.firstinspires.ftc.teamcode.subsystems.ArmTape;
 import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
 import org.firstinspires.ftc.teamcode.subsystems.Intake;
 
-@TeleOp(name = "WRCode")
-public class CompWROP extends LinearOpMode {
+@TeleOp(name = "Old WR Code")
+public class OldWR extends LinearOpMode {
     private Drivetrain drivetrain;
     private Intake intake;
-    private Arm arm;
+    private ArmNormal arm;
     private ArmTape armTape;
 
     private ElapsedTime runtime = new ElapsedTime();
@@ -23,7 +25,7 @@ public class CompWROP extends LinearOpMode {
         // Initialize subsystems
         drivetrain = new Drivetrain(hardwareMap);
         intake = new Intake(hardwareMap);
-        arm = new Arm(hardwareMap);
+        arm = new ArmNormal(hardwareMap);
         armTape = new ArmTape(hardwareMap);
 
         // Wait for the game to start
@@ -54,7 +56,6 @@ public class CompWROP extends LinearOpMode {
                 intake.StopIntake();
             }
 
-            arm.PID(arm.targetPos);
             //Arm Control
             if(gamepad2.dpad_up){
                 arm.MoveUp();
@@ -62,7 +63,9 @@ public class CompWROP extends LinearOpMode {
             else if(gamepad2.dpad_down){
                 arm.MoveDown();
             }
-
+            else{
+                arm.ArmStop();
+            }
 
             //Arm Tape Control
             if(gamepad2.y){
@@ -75,33 +78,20 @@ public class CompWROP extends LinearOpMode {
                 armTape.ArmTapeStop();
             }
 
-            //presets
+            //Arm preset
             if(gamepad2.x){
-                arm.high();
-            }
-
-            if(gamepad2.dpad_left){
-                arm.chamber();
-            }
-
-            if(gamepad2.dpad_right){
-                arm.normal();
-            }
-
-            if(gamepad2.b){
-                arm.scoreChamber();
+                if(arm.ArmValue() < 2000){
+                    arm.MoveUp();
+                }
             }
 
             //Telemetry Data
             telemetry.addData("Status", "Enabled");
             telemetry.addData("Arm Motor Pos:", arm.ArmValue());
-            telemetry.addData("Difference", arm.targetPos - arm.ArmValue());
-            telemetry.addData("Check",0.01 * (arm.targetPos - arm.ArmValue()));
             telemetry.addData("Run Time:", runtime);
             telemetry.addData("Gyro:", drivetrain.GyroValues());
             telemetry.addData("Front left/Right", "%4.2f, %4.2f", drivetrain.leftFrontPower(), drivetrain.rightFrontPower());
             telemetry.addData("Back  left/Right", "%4.2f, %4.2f", drivetrain.leftBackPower(), drivetrain.rightBackPower());
-            telemetry.addData("Target Pos:", arm.targetPos);
             telemetry.update();
         }
     }
