@@ -22,6 +22,8 @@ public class Drivetrain {
     private double TopLeftDrivePower;
     private double BottomLeftDrivePower;
 
+    boolean fast = false;
+
     public Drivetrain(HardwareMap hardwareMap) {
         TopRightDrive = hardwareMap.get(DcMotor.class, "RightFront");
         BottomRightDrive = hardwareMap.get(DcMotor.class, "RightBack");
@@ -62,11 +64,11 @@ public class Drivetrain {
         double Gyro = imu.getRobotYawPitchRollAngles().getYaw(AngleUnit.RADIANS);
         double MoveRightLeft = RightLeft * Math.cos(-Gyro) - ForwardBack * Math.sin(-Gyro); // left stick x
         double MoveForwardBack = RightLeft * Math.sin(-Gyro) + ForwardBack * Math.cos(-Gyro); // left stick y
+
         //Slow
-        //double Denominator = Math.max(Math.abs(RotAxial) + Math.abs(RotLateral) + Math.abs(Rotation), 2);
-        double Denominator = Math.max(Math.abs(MoveForwardBack) + Math.abs(MoveRightLeft) + Math.abs(Rotation), 1);
-        //speed glitch
-        //double Denominator = Math.max(Math.abs(RotAxial) + Math.abs(RotLateral) + Math.abs(Rotation), 0);
+        //double Denominator = Math.max(Math.abs(MoveForwardBack) + Math.abs(MoveRightLeft) + Math.abs(Rotation), 5);
+
+        double Denominator = Math.max(Math.abs(MoveForwardBack) + Math.abs(MoveRightLeft) + Math.abs(Rotation), 0);
 
         //Drive Code
         TopRightDrivePower = (((MoveForwardBack - MoveRightLeft) - Rotation) / Denominator);

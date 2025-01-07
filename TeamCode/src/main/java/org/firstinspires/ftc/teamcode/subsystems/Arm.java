@@ -14,7 +14,7 @@ public class Arm {
 
     //pid
     public int targetPos = 0;
-    private static double Kp = 0.009; //0.01
+    private static double Kp = 0.0009; //0.0009
     private static double Ki = 0;
     private static double Kd = 0;
     private double integralSum = 0;
@@ -43,16 +43,16 @@ public class Arm {
     }
 
     public void high(){
-        targetPos = 2200;
+        targetPos = 2100;
     }
 
     public void chamber(){
         targetPos = 300;
     }
 
-    public void dontSlam(){
-        targetPos = 100;
-    }
+    //public void dontSlam(){
+    //    targetPos = 100;
+    //}
 
     public void normal(){
         targetPos = 80;

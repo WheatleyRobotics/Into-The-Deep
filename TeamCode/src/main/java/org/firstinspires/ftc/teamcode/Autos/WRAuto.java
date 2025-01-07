@@ -57,6 +57,8 @@ public class WRAuto extends LinearOpMode {
         Thread.sleep(500);
         arm.AutoArmStop();
         Thread.sleep(2000);
+        drivetrain.drive(-1, 0, 0);
+        Thread.sleep(100);
 
 
         //intake.StopIntake();

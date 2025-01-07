@@ -38,7 +38,8 @@ public class CompWROP extends LinearOpMode {
             double Pivot = gamepad1.right_stick_x;
             drivetrain.drive(Vertical, Horizontal, Pivot);
 
-            if(gamepad1.a){
+
+            if(gamepad1.b){
                 drivetrain.resetGyro();
             }
 
