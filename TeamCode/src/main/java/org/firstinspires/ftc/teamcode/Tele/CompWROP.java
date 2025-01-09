@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode.Tele;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.teamcode.subsystems.Arm;
@@ -26,6 +27,8 @@ public class CompWROP extends LinearOpMode {
         arm = new Arm(hardwareMap);
         armTape = new ArmTape(hardwareMap);
 
+        arm.ResetArm();
+
         // Wait for the game to start
         waitForStart();
 
@@ -38,14 +41,13 @@ public class CompWROP extends LinearOpMode {
             double Pivot = gamepad1.right_stick_x;
             drivetrain.drive(Vertical, Horizontal, Pivot);
 
-
             if(gamepad1.b){
                 drivetrain.resetGyro();
             }
 
             //Operator Controls
             //Intake control
-            if(gamepad2.right_bumper){
+            if(gamepad2.x){
                 intake.IntakeIn();
             }
             else if(gamepad2.left_bumper){
@@ -57,14 +59,71 @@ public class CompWROP extends LinearOpMode {
 
             arm.PID(arm.targetPos);
             //Arm Control
+
+            if(gamepad2.right_bumper){
+                arm.overide();
+                //arm.MoveUp();
+            }
+            else{
+                arm.overidefalse();
+            }
+
+            if(gamepad2.dpad_left) {
+                arm.overide();
+                //arm.MoveDown();
+            }
+            else{
+                arm.overidefalse();
+            }
+
+            //Arm Tape Control
+            if(gamepad2.y){
+                armTape.MoveUp();
+            }
+            else if(gamepad2.a){
+                armTape.MoveDown();
+            }
+            else{
+                armTape.ArmTapeStop();
+            }
+
+            //presets
             if(gamepad2.dpad_up){
-                arm.MoveUp();
+                arm.high();
             }
-            else if(gamepad2.dpad_down){
-                arm.MoveDown();
+            else{
+                arm.resetchange();
             }
 
+            if(gamepad2.dpad_down){
+                arm.chamber();
+            }
+            else{
+                arm.resetchange();
+            }
 
+            if(gamepad2.dpad_right){
+                arm.normal();
+            }
+            else{
+                arm.resetchange();
+            }
+
+            if(gamepad2.b){
+                arm.scoreChamber();
+            }
+            else{
+                arm.resetchange();
+            }
+
+            if(gamepad2.right_stick_button) {
+                arm.ResetArm();
+            }
+            else{
+                arm.resetchange();
+            }
+
+            /*
             //Arm Tape Control
             if(gamepad2.y){
                 armTape.MoveUp();
@@ -93,6 +152,12 @@ public class CompWROP extends LinearOpMode {
                 arm.scoreChamber();
             }
 
+            if(gamepad2.right_stick_button){
+                arm.ResetArm();
+            }
+
+             */
+
             //Telemetry Data
             telemetry.addData("Status", "Enabled");
             telemetry.addData("Arm Motor Pos:", arm.ArmValue());
@@ -103,6 +168,7 @@ public class CompWROP extends LinearOpMode {
             telemetry.addData("Front left/Right", "%4.2f, %4.2f", drivetrain.leftFrontPower(), drivetrain.rightFrontPower());
             telemetry.addData("Back  left/Right", "%4.2f, %4.2f", drivetrain.leftBackPower(), drivetrain.rightBackPower());
             telemetry.addData("Target Pos:", arm.targetPos);
+            telemetry.addData("Run Overide:", arm.tel());
             telemetry.update();
         }
     }

@@ -20,6 +20,17 @@ public class Arm {
     private double integralSum = 0;
     private double lastError = 0;
 
+    //Presets
+    private final int high = 2100;
+    private final int chamber = 500;
+    private final int dontSlam = 700;
+    private final int normal = 80;
+    private final int scoreChamber = 1400;
+
+    //Manuel
+    int change = 5;
+    boolean overidebol = false;
+
     public Arm(HardwareMap hardwareMap){
         ArmMotor = hardwareMap.get(DcMotor.class, "ArmMotor");
 
@@ -43,23 +54,35 @@ public class Arm {
     }
 
     public void high(){
-        targetPos = 2100;
+        if (overidebol == true) {
+            change *= 5;
+        }
+        targetPos = high+change;
     }
 
     public void chamber(){
-        targetPos = 300;
+        if (overidebol == true) {
+            change *= 5;
+        }
+        targetPos = chamber+change;
     }
 
     //public void dontSlam(){
-    //    targetPos = 100;
+    //    targetPos = dontSlam;
     //}
 
     public void normal(){
-        targetPos = 80;
+        if (overidebol == true) {
+            change *= 5;
+        }
+        targetPos = normal+change;
     }
 
     public void scoreChamber(){
-        targetPos = 1400;
+        if (overidebol == true) {
+            change *= 5;
+        }
+        targetPos = scoreChamber+change;
     }
 
     public void MoveUp(){
@@ -70,8 +93,24 @@ public class Arm {
         ArmMotor.setPower(ArmSpeedDown);
     }
 
+    public void resetchange(){
+        change = 5;
+    }
+
     public void AutoMoveDown(){
         ArmMotor.setPower(-1);
+    }
+
+    public void overide(){
+        overidebol = true;
+    }
+
+    public void overidefalse(){
+        overidebol = false;
+    }
+
+    public boolean tel(){
+        return overidebol;
     }
 
     public void AutoArmStop(){
@@ -87,5 +126,11 @@ public class Arm {
 
     public int ArmValue(){
         return ArmMotor.getCurrentPosition();
+    }
+
+    public void ResetArm(){
+        ArmMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        ArmMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        ArmMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
     }
 }

@@ -78,12 +78,14 @@ public class OldWR extends LinearOpMode {
                 armTape.ArmTapeStop();
             }
 
+            /*
             //Arm preset
             if(gamepad2.x){
                 if(arm.ArmValue() < 2000){
                     arm.MoveUp();
                 }
             }
+             */
 
             //Telemetry Data
             telemetry.addData("Status", "Enabled");

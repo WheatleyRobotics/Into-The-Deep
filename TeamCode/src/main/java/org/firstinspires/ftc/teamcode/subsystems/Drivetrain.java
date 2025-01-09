@@ -68,7 +68,7 @@ public class Drivetrain {
         //Slow
         //double Denominator = Math.max(Math.abs(MoveForwardBack) + Math.abs(MoveRightLeft) + Math.abs(Rotation), 5);
 
-        double Denominator = Math.max(Math.abs(MoveForwardBack) + Math.abs(MoveRightLeft) + Math.abs(Rotation), 0);
+        double Denominator = Math.max(Math.abs(MoveForwardBack) + Math.abs(MoveRightLeft) + Math.abs(Rotation), 1);
 
         //Drive Code
         TopRightDrivePower = (((MoveForwardBack - MoveRightLeft) - Rotation) / Denominator);
