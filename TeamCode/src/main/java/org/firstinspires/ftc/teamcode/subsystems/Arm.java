@@ -21,8 +21,8 @@ public class Arm {
     private double lastError = 0;
 
     //Presets
-    private final int high = 2100;
-    private final int chamber = 500;
+    private final int high = 2150;
+    private final int chamber = 300;
     private final int dontSlam = 700;
     private final int normal = 80;
     private final int scoreChamber = 1400;
