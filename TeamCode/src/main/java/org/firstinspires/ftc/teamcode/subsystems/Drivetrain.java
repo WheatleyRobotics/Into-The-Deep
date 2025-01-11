@@ -22,7 +22,7 @@ public class Drivetrain {
     private double TopLeftDrivePower;
     private double BottomLeftDrivePower;
 
-    boolean fast = false;
+    boolean slow = false;
 
     public Drivetrain(HardwareMap hardwareMap) {
         TopRightDrive = hardwareMap.get(DcMotor.class, "RightFront");
@@ -68,6 +68,9 @@ public class Drivetrain {
         //Slow
         //double Denominator = Math.max(Math.abs(MoveForwardBack) + Math.abs(MoveRightLeft) + Math.abs(Rotation), 5);
 
+        if(slow = true) {
+            double Denominator = Math.max(Math.abs(MoveForwardBack) + Math.abs(MoveRightLeft) + Math.abs(Rotation), 5);
+        }
         double Denominator = Math.max(Math.abs(MoveForwardBack) + Math.abs(MoveRightLeft) + Math.abs(Rotation), 1);
 
         //Drive Code
@@ -105,5 +108,13 @@ public class Drivetrain {
 
     public void resetGyro(){
         imu.resetYaw();
+    }
+
+    public void makeSlow(){
+        slow = true;
+    }
+
+    public void fast(){
+        slow = false;
     }
 }

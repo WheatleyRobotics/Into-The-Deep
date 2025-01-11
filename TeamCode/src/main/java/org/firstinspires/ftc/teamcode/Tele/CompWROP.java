@@ -45,6 +45,13 @@ public class CompWROP extends LinearOpMode {
                 drivetrain.resetGyro();
             }
 
+            if(gamepad1.left_bumper){
+                drivetrain.makeSlow();
+            }
+            else{
+                drivetrain.fast();
+            }
+
             //Operator Controls
             //Intake control
             if(gamepad2.x){

@@ -38,12 +38,12 @@ public class WRAuto extends LinearOpMode {
         arm.ArmStop();
         Thread.sleep(10);
         armTape.ArmMoveUp();
-        Thread.sleep(500);
+        Thread.sleep(900);
         armTape.AutoMoveUp();
-        Thread.sleep(370);
+        Thread.sleep(500);
         armTape.AutoArmTapeStop();
         intake.IntakeOut();
-        Thread.sleep(2000);
+        Thread.sleep(2300);
         intake.StopIntake();
         Thread.sleep(50);
         //Auto go back to normal
@@ -57,8 +57,10 @@ public class WRAuto extends LinearOpMode {
         Thread.sleep(500);
         arm.AutoArmStop();
         Thread.sleep(2000);
+        drivetrain.drive(1, 0, 0);
+        Thread.sleep(500);
         drivetrain.drive(-1, 0, 0);
-        Thread.sleep(100);
+        Thread.sleep(500);
 
 
         //intake.StopIntake();

@@ -22,7 +22,7 @@ public class Arm {
 
     //Presets
     private final int high = 2150;
-    private final int chamber = 300;
+    private final int chamber = 350;
     private final int dontSlam = 700;
     private final int normal = 80;
     private final int scoreChamber = 1400;
